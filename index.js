@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const corsOption = {
   origin: "https://my-future-frontend.vercel.app/",
+  methods: ["POST", "GET", "PUT", "DELETE"],
   optionSuccessStatus: 200,
 };
 
