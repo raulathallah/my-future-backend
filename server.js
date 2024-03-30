@@ -6,6 +6,11 @@ const actionRoute = require("./routes/actionRoute");
 const errorMiddleware = require("./middleware/errorMiddleware");
 const cors = require("cors");
 
+const corsOption = {
+  origin: "",
+  optionSuccessStatus: 200,
+};
+
 // .env
 const MONGO_DB = process.env.MONGO_DB;
 const PORT = process.env.PORT;
