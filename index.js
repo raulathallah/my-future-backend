@@ -24,6 +24,9 @@ app.use(cors(corsOption));
 
 // request api
 app.use("/api/action", actionRoute);
+app.get("/", async (req, res) => {
+  res.send("Backend deployed.");
+});
 
 mongoose.set("strictQuery", false);
 mongoose
