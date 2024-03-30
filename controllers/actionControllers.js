@@ -1,3 +1,4 @@
+const { validationResult } = require("express-validator");
 const Action = require("../models/actionModel");
 const asyncHandler = require("express-async-handler");
 const getAction = asyncHandler(async (req, res) => {
@@ -16,16 +17,19 @@ const getActionById = asyncHandler(async (req, res) => {
     res.status(200).json(action);
   } catch (error) {
     res.status(500);
-    throw new Error("fake error");
+    console.log(error.message);
   }
 });
 const createAction = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
   try {
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: errors.array() });
+    }
     const action = await Action.create(req.body);
     res.status(200).json(action);
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: error.message });
+    return res.status(500);
   }
 });
 const updateAction = asyncHandler(async (req, res) => {
@@ -51,8 +55,7 @@ const deleteAction = asyncHandler(async (req, res) => {
       return res
         .status(404)
         .json({ message: `Cannot find any Action with Id ${id}` });
-    const updatedAction = await Action.findById(id);
-    res.status(200).json(updatedAction);
+    res.status(200).json(action);
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: error.message });

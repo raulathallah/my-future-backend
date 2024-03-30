@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const actionSchema = mongoose.Schema(
   {
     title: {
