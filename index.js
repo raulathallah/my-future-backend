@@ -7,7 +7,7 @@ const errorMiddleware = require("./middleware/errorMiddleware");
 const cors = require("cors");
 
 const corsOption = {
-  origin: "",
+  origin: "https://my-future-frontend.vercel.app/",
   optionSuccessStatus: 200,
 };
 
@@ -19,7 +19,7 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(errorMiddleware);
-app.use(cors());
+app.use(cors(corsOption));
 
 // request api
 app.use("/api/action", actionRoute);
