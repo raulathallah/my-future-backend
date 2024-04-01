@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const Action = require("../models/actionModel");
 const {
   getAction,
   getActionById,
